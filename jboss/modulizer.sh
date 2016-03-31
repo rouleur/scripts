@@ -12,7 +12,9 @@ fi
 echo "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
 echo "<module xmlns=\"urn:jboss:module:1.1\" name=\"$1\">"
 echo "  <resources>"
-for f in *.jar; do echo "    <resource-root path=\""$f"\"/>"; done
+for f in *.jar 
+  do echo "    <resource-root path=\""$f"\"/>" 
+done
 echo "  </resources>"
 echo "  <dependencies>"
 echo "    <module name=\"sun.jdk\" export=\"true\" >"
