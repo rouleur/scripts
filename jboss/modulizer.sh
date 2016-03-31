@@ -1,12 +1,13 @@
 #!/bin/bash
-# 
+
+#
 # Creates a Jboss Module XML from the jars in the current directory.
 #
 
-if [ $# -eq 0 ]
+if [[ $# -eq 0 || $# -gt 1 ]]
   then
-    echo "Usage: modulizer <module name>"
-    exit 1
+  echo "Usage: modulizer <module name>"
+  exit 1
 fi
 echo "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
 echo "<module xmlns=\"urn:jboss:module:1.1\" name=\"$1\">"
