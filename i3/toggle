@@ -1,0 +1,27 @@
+#!/bin/bash
+# 
+# toggle takes an application command as an argument
+# opens the application if it's not open, 
+# closes it if it's already open. 
+#
+# You can get key codes (148, 179) using 13-input
+# in i3 config:
+# for calculator:
+# bindcode 148 exec $HOME/.i3/toggle gnome-calculator
+# for_window [class="Gcalctool"] floating enable
+# for vlc:
+# bindcode 179 exec  $HOME/.i3/toggle vlc
+# for_window [class="vlc"] floating enable
+#
+prog=$1
+if [ ${#1} -ge 15 ]
+  then
+  prog=${1:0:15}
+fi
+pid=$(pgrep  $prog)
+if [ $pid  ] 
+  then
+     kill $pid
+  else
+  exec $1 & 
+fi
