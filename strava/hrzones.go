@@ -1,14 +1,14 @@
 package main
 
 import (
-"fmt"
- "encoding/json"
- "time"
- "io/ioutil"
- "os"
+   "fmt"
+   "encoding/json"
+   "time"
+   "io/ioutil"
+   "os" 
 )
 
-type Activity struct{
+type Activity struct {
    Time            []int 
    Distance        []int 
    Altitude        []int
@@ -26,7 +26,7 @@ type Activity struct{
 func Bar (n int) string {
    barChar := "|" 
    result := ""
-   for i:=0; i<int(n/2); i ++ {
+   for i := 0; i < int(n/2); i++ {
       result+=barChar
    }     
    return result
@@ -36,7 +36,7 @@ func ZonePercentage (zoneTime int, activity Activity) int {
    return int(float32(zoneTime)/float32(len(activity.Time))*100)
 }
 
-func main(){
+func main() {
    if len(os.Args[1:]) != 1 {
       fmt.Println("Usage: hrzones.go <activity json file>")
       os.Exit(1)
@@ -58,7 +58,7 @@ func main(){
    z4Seconds := 0
    z5Seconds := 0
 
-   for j := range activity.Heartrate  {
+   for j := range activity.Heartrate {
       if j == 0 { continue }
       var entry = activity.Heartrate[j]
       switch {
