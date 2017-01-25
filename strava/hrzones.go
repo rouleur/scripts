@@ -53,13 +53,13 @@ func main() {
   res, _ := client.Do(req)
   defer res.Body.Close()
   body, _ := ioutil.ReadAll(res.Body)
-  fmt.Println(string(body))
+//  fmt.Println(string(body))
   zones := HeartRateZones{}
   json.Unmarshal(body, &zones)
 
   fmt.Println("Your Zones")
   for _, bucket:= range zones.Distribution_buckets {
-    fmt.Println(bucket.Label_long,":", time.Duration(bucket.Time) * time.Second)
+    fmt.Println(bucket.Label_long,"(",bucket.Min,"-",bucket.Max,"):", time.Duration(bucket.Time) * time.Second)
   }
 
  fmt.Println("--------------------------------------------------------")
