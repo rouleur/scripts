@@ -11,4 +11,5 @@ Toggle an application (like vlc, gnome-calculator) in i3wm
 #### strava/hrzones.go
 Takes an activity json file obtained from Strava and displays heartrate zone distribution
 #### osrm/osrm
-System V service script for OSRM (Open Source Routing Engine)
+System V service script for [OSRM](http://project-osrm.org/) 
+(Open Source Routing Machine)
