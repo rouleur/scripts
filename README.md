@@ -10,3 +10,5 @@ Generates a jboss module for elasticsearch as in [this page](<https://www.elasti
 Toggle an application (like vlc, gnome-calculator) in i3wm
 #### strava/hrzones.go
 Takes an activity json file obtained from Strava and displays heartrate zone distribution
+#### osrm/osrm
+System V service script for OSRM (Open Source Routing Engine)
