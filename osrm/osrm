@@ -1,0 +1,72 @@
+# /etc/init.d/osrm-service
+#
+# Startup script for OSRM
+#
+# description: Starts and Stops OSRM (Open Source Routing Engine)
+. /etc/init.d/functions
+
+desc="OSRM service.."
+
+export OSRM_HOME=/space/osrm
+export LD_LIBRARY_PATH=$OSRM_HOME/lib
+export OSRM_LOGPATH=/var/log/osrm
+
+if [ ! -d $OSRM_LOGPATH ]
+ then
+    mkdir $OSRM_LOGPATH
+fi
+
+status() {
+  pid=$(pgrep  osrm-routed)
+  if [ $pid  ]
+    then
+       echo "OSRM is up. PID="$pid
+    else
+       echo "OSRM is down."
+  fi
+  RETVAL=$?
+  return $RETVAL
+}
+
+start() {
+  if [ $(pgrep  osrm-routed) ]
+    then
+      echo "OSRM is already running"  
+    else
+       echo "Starting $desc"
+       $OSRM_HOME/osrm-routed $OSRM_HOME/data/india-latest.osrm &>> $OSRM_LOGPATH/osrm.log & 
+  fi
+  RETVAL=$?
+  return $RETVAL
+}
+
+stop() {
+  echo "Shutting down $desc"
+  pid=$(pgrep  osrm-routed)
+  if [ $pid  ] 
+    then
+       kill $pid
+    else
+    exec $1 & 
+  fi
+  RETVAL=$?
+  return $RETVAL
+}
+
+restart() {
+    stop
+    start
+}
+
+
+case "$1" in
+
+  start)   start;;
+  stop)    stop;;
+  restart) restart;;
+  status)  status;;
+  *)       echo "Usage: $0 {start|stop|restart|status}"
+           RETVAL=2;;
+esac
+exit $RETVAL
+
