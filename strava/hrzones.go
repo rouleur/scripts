@@ -64,7 +64,7 @@ func main() {
 
  fmt.Println("--------------------------------------------------------")
   for _, bucket:= range zones.Distribution_buckets {
-    fmt.Println(bucket.Label_short,":", Bar(bucket.Percent*100) )
+    fmt.Println(bucket.Label_short,":", Bar(bucket.Percent*100),"[",int(bucket.Percent*100),"%]" )
     fmt.Println("--------------------------------------------------------")
   }
 
